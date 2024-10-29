@@ -1,10 +1,22 @@
 package com.example.demo.controller;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.demo.model.domain.Article;
+import com.example.demo.model.domain.TestDB;
+import com.example.demo.model.service.BlogService;
+import com.example.demo.model.service.TestService;
+
+import org.springframework.web.bind.annotation.RequestParam;
+
+
 @Controller // 컨트롤러 어노테이션 명시
 public class DemoController {
+    TestService testService;
+    BlogService blogService;
     @GetMapping("/hello") // 전송 방식 GET
     public String hello(Model model) {
         model.addAttribute("data", " 방갑습니다."); // model 설정
@@ -22,4 +34,24 @@ public class DemoController {
         return "thymeleaf_test1";
     } 
 
-} 
+    @GetMapping("/testdb")
+    public String getAllTestDBs(Model model) {
+        
+        TestDB test = testService.findByName("홍길동");
+        model.addAttribute("data4", test);
+        System.out.println("데이터 출력 디버그 : " + test);
+        return "testdb";
+    }
+    
+    @GetMapping("/article_list")
+    public String article_list() {
+        return "article_list";
+    }
+    
+    @GetMapping("/article_list")
+    public String article_list(Model model) {
+        List<Article> list = blogService.findAll();
+        model.addAttribute("articles", list);
+        return "article_list";
+    }
+}
