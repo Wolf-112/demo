@@ -42,16 +42,4 @@ public class DemoController {
         System.out.println("데이터 출력 디버그 : " + test);
         return "testdb";
     }
-    
-    @GetMapping("/article_list")
-    public String article_list() {
-        return "article_list";
-    }
-    
-    @GetMapping("/article_list")
-    public String article_list(Model model) {
-        List<Article> list = blogService.findAll();
-        model.addAttribute("articles", list);
-        return "article_list";
-    }
 }

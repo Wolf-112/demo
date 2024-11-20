@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 import com.example.demo.model.domain.Article;
 import com.example.demo.model.domain.Board;
-import com.example.demo.model.domain.AddArticleRequest;
-import com.example.demo.model.domain.BlogService;
+import com.example.demo.model.service.AddArticleRequest;
+import com.example.demo.model.service.BlogService;
 @Controller
 
 public class BlogController { 
@@ -30,17 +30,24 @@ public class BlogController {
             model.addAttribute("articles", list);
         return "article_list";
     }
-    @GetMapping("/article_edit/{id}")
 
+    @GetMapping("/favicon.ico")
+    public void favicon() {
+        //아무 작업도 하지 않음
+    }
+
+    @GetMapping("/article_edit/{id}")
     public String article_edit(Model model, @PathVariable Long id) {
         Optional<Article> list = blogService.findByID(id);
+        
         if (list.isPresent()) {
-            model.addAttribute(attributeName:"article", list.get());
+            model.addAttribute("article", list.get());
         } else {
-            return "error";
+            return "/error_page/article_error";
         }
         return "article_edit";
-        }
+    }
+
     @PutMapping("/api/article_edit/{id}")
     public String updateArticle(@PathVariable Long id, @ModelAttribute AddArticleRequest request) {
         blogService.update(id, request);
@@ -62,7 +69,7 @@ public class BlogController {
     @GetMapping("/board_list")
     public String board_list(Model model) {
         List<Board> list = blogService.findAll();
-        model.addAttribute(attributeName:"articles", list);
+        model.addAttribute("articles", list);
         return "board_list";
     }
 

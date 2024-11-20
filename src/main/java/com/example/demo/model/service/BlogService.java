@@ -29,8 +29,8 @@ public class BlogService {
         throw new UnsupportedOperationException("Unimplemented method 'findByID'");
     }
 
-    public Optional<Article> findByID(Long id) {
-        return blogRepository.findByID(id);
+    public Optional<Article> findById(Long id) {
+        return blogRepository.findById(id);
     }
 
     public void update(Long id, AddArticleRequest request) {
@@ -39,11 +39,6 @@ public class BlogService {
             article.update(request.getTitle(), request.getContent());
             blogRepository.save(article);
         });
-    }
-
-    public void delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 
     public void delete(Long id) {
