@@ -34,7 +34,7 @@ public class BlogService {
     }
 
     public void update(Long id, AddArticleRequest request) {
-        Optional<Article> optionalArticle = blogRepository.findByID(id);
+        Optional<Article> optionalArticle = blogRepository.findById(id);
         optionalArticle.ifPresent(article -> { // 값이 있으면 
             article.update(request.getTitle(), request.getContent());
             blogRepository.save(article);
@@ -42,7 +42,7 @@ public class BlogService {
     }
 
     public void delete(Long id) {
-        blogRepository.deleteByID(id);
+        blogRepository.deleteById(id);
     }
 }
 
