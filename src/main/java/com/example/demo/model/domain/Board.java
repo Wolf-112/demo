@@ -17,6 +17,14 @@ public class Board {
     private String title ="";
     @Column(name = "content", nullable = false)
     private String content = "";
+    @Column(name = "user", nullable = false)
+    private String user = "";
+    @Column(name = "newdate", nullable = false)
+    private String newdate = "";
+    @Column(name = "count", nullable = false)
+    private String count = "";
+    @Column(name = "likec", nullable = false)
+    private String likec = "";
 
     @Builder
     public Board(String title, String content){
