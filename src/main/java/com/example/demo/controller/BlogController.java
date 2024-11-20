@@ -94,6 +94,11 @@ public class BlogController {
         }
         return "board_view";
     }
+
+    @GetMapping("/board_write")
+    public String board_write() {
+        return"board_write";
+    }
     
 }
 
