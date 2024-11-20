@@ -27,11 +27,11 @@ public class BlogController {
     
     @Autowired
     com.example.demo.model.service.BlogService blogService;
-    @GetMapping("/article_list")
+    @GetMapping("/board_list")
         public String article_list(Model model) {
-            List<Article> list = blogService.findAll();
+            List<Board> list = blogService.findAll();
             model.addAttribute("articles", list);
-        return "article_list";
+        return "board_list";
     }
 
     @GetMapping("/favicon.ico")
@@ -39,35 +39,30 @@ public class BlogController {
         //아무 작업도 하지 않음
     }
 
-    @GetMapping("/article_edit/{id}")
-    public String article_edit(Model model, @PathVariable Long id) {
-        Optional<Article> list = blogService.findByID(id);
+    // @GetMapping("/article_edit/{id}")
+    // public String article_edit(Model model, @PathVariable Long id) {
+    //     Optional<Article> list = blogService.findByID(id);
         
-        if (list.isPresent()) {
-            model.addAttribute("article", list.get());
-        } else {
-            return "/error_page/article_error";
-        }
-        return "article_edit";
-    }
+    //     if (list.isPresent()) {
+    //         model.addAttribute("article", list.get());
+    //     } else {
+    //         return "/error_page/article_error";
+    //     }
+    //     return "article_edit";
+    // }
 
-    @PutMapping("/api/article_edit/{id}")
-    public String updateArticle(@PathVariable Long id, @ModelAttribute AddArticleRequest request) {
-        blogService.update(id, request);
-        return "redirect:/article_list";
-    }
+    // @PutMapping("/api/article_edit/{id}")
+    // public String updateArticle(@PathVariable Long id, @ModelAttribute AddArticleRequest request) {
+    //     blogService.update(id, request);
+    //     return "redirect:/article_list";
+    // }
 
-    public class BlogRestController {
-        private BlogService blogService;
-        public BlogRestController(BlogService blogService) {
-            this.blogService = blogService;
-        }
-    @PostMapping("/api/articles")
-    public String addArticle(@ModelAttribute AddArticleRequest request) {
-        blogService.save(request);
-        return "redirect:/article_list";
-    }
-    }
+    // @PostMapping("/api/articles")
+    // public String addArticle(@ModelAttribute AddArticleRequest request) {
+    //     blogService.save(request);
+    //     return "redirect:/article_list";
+    // }
+    
 
     @GetMapping("/board_list")
     public String board_list(Model model) {

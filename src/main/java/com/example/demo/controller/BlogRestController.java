@@ -22,27 +22,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class BlogRestController {
     private final BlogService blogService;
 
-    @PostMapping("/api/articles")
-    public ResponseEntity<Article> addArticle(@ModelAttribute AddArticleRequest request) {
-        Article saveArticle = blogService.save(request);
-        return ResponseEntity.status(HttpStatus.CREATED)
-            .body(saveArticle);
-    }
+    // @PostMapping("/api/articles")
+    // public ResponseEntity<Article> addArticle(@ModelAttribute AddArticleRequest request) {
+    //     Article saveArticle = blogService.save(request);
+    //     return ResponseEntity.status(HttpStatus.CREATED)
+    //         .body(saveArticle);
+    // }
 
-    @GetMapping("/faviction.ico")
-    public void favicon() {}
+    // @GetMapping("/faviction.ico")
+    // public void favicon() {}
 
-    @GetMapping("/article_edit/{id}")
-    public String article_edit(Model model, @PathVariable Long id) {
-        Optional<Article> list = blogService.findByID(id);
+    // @GetMapping("/article_edit/{id}")
+    // public String article_edit(Model model, @PathVariable Long id) {
+    //     Optional<Article> list = blogService.findByID(id);
 
-        if (list.isPresent()) {
-            model.addAttribute("article", list.get());
-        } else {
-            return "error";
-        }
-        return "article_edit";
-    }   
+    //     if (list.isPresent()) {
+    //         model.addAttribute("article", list.get());
+    //     } else {
+    //         return "error";
+    //     }
+    //     return "article_edit";
+    // }   
     
     
 }
