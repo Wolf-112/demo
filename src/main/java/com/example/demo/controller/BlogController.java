@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 import com.example.demo.model.domain.Article;
 import com.example.demo.model.domain.Board;
+import com.example.demo.model.repository.BoardRepository;
 import com.example.demo.model.service.AddArticleRequest;
 import com.example.demo.model.service.BlogService;
+import org.springframework.web.bind.annotation.RequestParam;
+
 @Controller
 
 public class BlogController { 
@@ -78,4 +81,20 @@ public class BlogController {
         blogService.delete(id);
         return "redirect:/article_list";
     }
+
+    @GetMapping("/board_view/{id}") //개시판 링크 지정
+    public String board_view(Model model, @PathVariable Long id) {
+        Optional<Board> list = blogService.findById(id);
+
+        if (list.isPresent()) {
+            model.addAttribute("boards", list.get());
+        } else {
+            //처리 로직 추가 (예: 오류 페이지로 리다이렉트, 예외 처리 등)
+            return "/error_page/article_error";
+        }
+        return "board_view";
+    }
+    
 }
+
+// 전달 변수 이름 수정 질문할 것. 
