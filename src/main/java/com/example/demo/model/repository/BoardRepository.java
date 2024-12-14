@@ -9,5 +9,5 @@ import com.example.demo.model.domain.Board;
 public interface BoardRepository extends JpaRepository<Board, Long>{
 
     Article save(Article entity);
-    //List<Article> findAll();
+    // List<Article> findAll();
 }

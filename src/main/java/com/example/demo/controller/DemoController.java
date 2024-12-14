@@ -23,6 +23,8 @@ public class DemoController {
         return "hello"; // hello.html 연결
     }
 
+    
+
     @GetMapping ("/test1")
     public String thymeleaf_test1(Model model) {
         model.addAttribute("data1", "<h2> 방갑습니다 </h2>");
