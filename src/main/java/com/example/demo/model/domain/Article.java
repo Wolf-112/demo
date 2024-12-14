@@ -1,6 +1,9 @@
 package com.example.demo.model.domain;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
 
 @Getter

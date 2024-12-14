@@ -1,6 +1,8 @@
 package com.example.demo.model.service;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import com.example.demo.model.domain.Article;
 
 @NoArgsConstructor
